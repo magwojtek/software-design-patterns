@@ -17,6 +17,8 @@ describe('Prototype Pattern - Proper Implementation', () => {
         character.addSkill('fireball');
 
         expect(character.skills).toContain('fireball');
+        // Verify the operation was tracked
+        expect(character.getLastOperation()).toBe('Mage learned fireball');
     });
 
     it('should create a clone with independent properties', () => {
@@ -27,6 +29,9 @@ describe('Prototype Pattern - Proper Implementation', () => {
 
         // Clone the character
         const clonedWarrior = warrior.clone();
+
+        // Verify the operation was tracked
+        expect(clonedWarrior.getLastOperation()).toBe('Cloned from Warrior');
 
         // Initial values should match (except the name)
         expect(clonedWarrior.name).toBe('Warrior_clone');
@@ -51,6 +56,10 @@ describe('Prototype Pattern - Proper Implementation', () => {
         // Original should not have the cloned character's new skill or item
         expect(warrior.skills).not.toContain('dual wield');
         expect(warrior.inventory).not.toHaveProperty('second sword');
+
+        // Verify the last operations on each character
+        expect(warrior.getLastOperation()).toBe('Warrior received 1 shield(s)');
+        expect(clonedWarrior.getLastOperation()).toBe('Warrior_clone received 1 second sword(s)');
     });
 
     it('should clone with a custom name', () => {
@@ -93,7 +102,14 @@ describe('Prototype Pattern - Proper Implementation', () => {
 
         // Register prototypes
         CharacterPrototypeRegistry.addPrototype('warrior', warriorPrototype);
+        expect(CharacterPrototypeRegistry.getLastOperation()).toBe(
+            'Added "warrior" prototype to registry',
+        );
+
         CharacterPrototypeRegistry.addPrototype('mage', magePrototype);
+        expect(CharacterPrototypeRegistry.getLastOperation()).toBe(
+            'Added "mage" prototype to registry',
+        );
 
         // Get available prototypes
         expect(CharacterPrototypeRegistry.listPrototypes()).toContain('warrior');
@@ -101,13 +117,26 @@ describe('Prototype Pattern - Proper Implementation', () => {
 
         // Get a warrior from registry
         const newWarrior = CharacterPrototypeRegistry.getPrototype('warrior');
+        expect(CharacterPrototypeRegistry.getLastOperation()).toBe(
+            'Retrieved "warrior" prototype from registry',
+        );
         expect(newWarrior).toBeDefined();
         expect(newWarrior?.skills).toContain('sword slash');
 
         // Get a mage from registry
         const newMage = CharacterPrototypeRegistry.getPrototype('mage');
+        expect(CharacterPrototypeRegistry.getLastOperation()).toBe(
+            'Retrieved "mage" prototype from registry',
+        );
         expect(newMage).toBeDefined();
         expect(newMage?.skills).toContain('fireball');
+
+        // Test registry behavior for non-existent prototype
+        const nonExistentPrototype = CharacterPrototypeRegistry.getPrototype('archer');
+        expect(CharacterPrototypeRegistry.getLastOperation()).toBe(
+            'Prototype "archer" not found in registry',
+        );
+        expect(nonExistentPrototype).toBeUndefined();
 
         // Modify the retrieved characters without affecting originals
         if (newWarrior) newWarrior.addSkill('heavy blow');

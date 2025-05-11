@@ -6,12 +6,15 @@
   "scripts": {
     "test": "yarn jest",
     "test:watch": "yarn jest --watch",
+    "test:scripts": "yarn jest src/all-scripts.test.ts",
     "build": "yarn tsc",
     "lint": "yarn eslint 'src/**/*.{js,ts}'",
     "lint:fix": "yarn eslint 'src/**/*.{js,ts}' --fix",
     "format": "yarn prettier --write 'src/**/*.{js,ts}'",
     "start": "yarn ts-node -P tsconfig.node.json src/index.ts",
-    "start:pattern": "yarn ts-node -P tsconfig.node.json src/index.ts"
+    "start:pattern": "yarn ts-node -P tsconfig.node.json src/index.ts",
+    "start:patterns": "yarn start:pattern all",
+    "start:all:patterns": "yarn ts-node -r tsconfig-paths/register src/index.ts all"
   },
   "keywords": [],
   "author": "",

@@ -29,7 +29,7 @@ jobs:
         yarn add --dev eslint@8.57.1 --exact
     
     - name: Run linting
-      run: yarn lint || true
+      run: yarn lint
     
     - name: Build
       run: yarn build

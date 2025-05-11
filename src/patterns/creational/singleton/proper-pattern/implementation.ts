@@ -7,7 +7,7 @@
  * 3. Better testability with dependency injection option
  * 4. Explicit instance access through getInstance method
  */
-import { logger, LogColor } from '~/utils/logger';
+import { logger } from '~/utils/logger';
 
 export interface IDatabaseConnection {
     connect(connectionString?: string): void;
@@ -20,6 +20,7 @@ export class DatabaseConnection implements IDatabaseConnection {
     private static instance: DatabaseConnection | null = null;
     private _connectionString: string;
     private _connected: boolean = false;
+    private _lastOperation: string | null = null;
 
     private constructor() {
         this._connectionString = 'default-connection-string';
@@ -37,24 +38,34 @@ export class DatabaseConnection implements IDatabaseConnection {
         DatabaseConnection.instance = null;
     }
 
+    public getLastOperation(): string | null {
+        return this._lastOperation;
+    }
+
     public connect(connectionString?: string): void {
         if (connectionString) {
             this._connectionString = connectionString;
         }
-        logger.log(`Connecting to database with ${this._connectionString}`, LogColor.INFO);
+        const message = `Connecting to database with ${this._connectionString}`;
+        logger.info(message);
         this._connected = true;
+        this._lastOperation = message;
     }
 
     public disconnect(): void {
-        logger.log('Disconnecting from database', LogColor.INFO);
+        const message = 'Disconnecting from database';
+        logger.info(message);
         this._connected = false;
+        this._lastOperation = message;
     }
 
     public executeQuery(query: string): string[] {
         if (!this._connected) {
             throw new Error('Not connected to database');
         }
-        logger.log(`Executing query: ${query}`, LogColor.INFO);
+        const message = `Executing query: ${query}`;
+        logger.info(message);
+        this._lastOperation = message;
         return [`Result for: ${query}`];
     }
 

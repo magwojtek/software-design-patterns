@@ -1,5 +1,4 @@
 import { DatabaseConnection, createDatabaseConnection } from './implementation';
-import { logger, LogColor } from '~/utils/logger';
 
 describe('Singleton Proper Pattern Tests', () => {
     beforeEach(() => {
@@ -15,21 +14,12 @@ describe('Singleton Proper Pattern Tests', () => {
     });
 
     test('should initialize only when first requested', () => {
-        const spy = jest.spyOn(logger, 'log');
-
-        // No initialization yet
-        expect(spy).not.toHaveBeenCalled();
-
         // Get instance and connect
         const instance = DatabaseConnection.getInstance();
         instance.connect();
 
-        expect(spy).toHaveBeenCalledWith(
-            expect.stringContaining('Connecting to database'),
-            LogColor.INFO,
-        );
-
-        spy.mockRestore();
+        // Check the last operation instead of spying on logger
+        expect(instance.getLastOperation()).toContain('Connecting to database');
     });
 
     test('should throw error when executing query without connection', () => {

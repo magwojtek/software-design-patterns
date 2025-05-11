@@ -8,7 +8,7 @@
  * 4. Encapsulates cloning details from client code
  * 5. Avoids expensive initialization when creating similar objects
  */
-import { logger, LogColor } from '~/utils/logger';
+import { logger } from '~/utils/logger';
 
 // Define the Prototype interface
 export interface Prototype<T> {
@@ -22,6 +22,7 @@ export class Character implements Prototype<Character> {
     private _defensePower: number;
     private _skills: string[];
     private _inventory: { [key: string]: number };
+    private _lastOperation: string | null = null;
 
     constructor(name: string) {
         this._name = name;
@@ -36,7 +37,8 @@ export class Character implements Prototype<Character> {
     }
 
     private loadDefaultStats(): void {
-        logger.log(`${this._name}: Loading default stats (expensive operation)`, LogColor.INFO);
+        this._lastOperation = `${this._name}: Loading default stats (expensive operation)`;
+        logger.info(this._lastOperation);
         // Simulate a complex loading operation
     }
 
@@ -57,10 +59,10 @@ export class Character implements Prototype<Character> {
         // Deep copy for objects
         clone._inventory = { ...this._inventory };
 
-        logger.log(
-            `Cloned ${this._name} into ${clone._name} (without expensive initialization)`,
-            LogColor.INFO,
-        );
+        // Set last operation in the cloned object
+        clone._lastOperation = `Cloned from ${this._name}`;
+
+        logger.info(`Cloned ${this._name} into ${clone._name} (without expensive initialization)`);
 
         return clone;
     }
@@ -95,7 +97,8 @@ export class Character implements Prototype<Character> {
 
     public addSkill(skill: string): void {
         this._skills.push(skill);
-        logger.log(`${this._name} learned ${skill}`, LogColor.INFO);
+        this._lastOperation = `${this._name} learned ${skill}`;
+        logger.info(this._lastOperation);
     }
 
     public addItem(item: string, quantity = 1): void {
@@ -104,20 +107,26 @@ export class Character implements Prototype<Character> {
         } else {
             this._inventory[item] = quantity;
         }
-        logger.log(`${this._name} received ${quantity} ${item}(s)`, LogColor.INFO);
+        this._lastOperation = `${this._name} received ${quantity} ${item}(s)`;
+        logger.info(this._lastOperation);
     }
 
     public displayStats(): void {
-        logger.log(`=== ${this._name} Stats ===`, LogColor.INFO);
-        logger.log(`Health: ${this._health}`, LogColor.INFO);
-        logger.log(`Attack: ${this._attackPower}`, LogColor.INFO);
-        logger.log(`Defense: ${this._defensePower}`, LogColor.INFO);
-        logger.log(`Skills: ${this._skills.join(', ')}`, LogColor.INFO);
+        logger.info(`=== ${this._name} Stats ===`);
+        logger.info(`Health: ${this._health}`);
+        logger.info(`Attack: ${this._attackPower}`);
+        logger.info(`Defense: ${this._defensePower}`);
+        logger.info(`Skills: ${this._skills.join(', ')}`);
 
-        logger.log('Inventory:', LogColor.INFO);
+        logger.info('Inventory:');
         Object.entries(this._inventory).forEach(([item, count]) => {
-            logger.log(`  ${item}: ${count}`, LogColor.INFO);
+            logger.info(`  ${item}: ${count}`);
         });
+    }
+
+    // Method to get the last operation for testing
+    public getLastOperation(): string | null {
+        return this._lastOperation;
     }
 
     // Getters to access private properties
@@ -144,18 +153,26 @@ export class Character implements Prototype<Character> {
 // Example of a prototype registry/cache
 export class CharacterPrototypeRegistry {
     private static _prototypes: Map<string, Character> = new Map();
+    private static _lastOperation: string | null = null;
+
+    public static getLastOperation(): string | null {
+        return CharacterPrototypeRegistry._lastOperation;
+    }
 
     public static addPrototype(name: string, prototype: Character): void {
         CharacterPrototypeRegistry._prototypes.set(name, prototype);
-        logger.log(`Added "${name}" prototype to registry`, LogColor.INFO);
+        CharacterPrototypeRegistry._lastOperation = `Added "${name}" prototype to registry`;
+        logger.info(CharacterPrototypeRegistry._lastOperation);
     }
 
     public static getPrototype(name: string): Character | undefined {
         const prototype = CharacterPrototypeRegistry._prototypes.get(name);
         if (!prototype) {
-            logger.log(`Prototype "${name}" not found in registry`, LogColor.WARNING);
+            CharacterPrototypeRegistry._lastOperation = `Prototype "${name}" not found in registry`;
+            logger.warn(CharacterPrototypeRegistry._lastOperation);
             return undefined;
         }
+        CharacterPrototypeRegistry._lastOperation = `Retrieved "${name}" prototype from registry`;
         return prototype.clone();
     }
 

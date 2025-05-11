@@ -81,35 +81,71 @@ export interface ShapeFactory {
 
 // Concrete factories
 export class RectangleFactory implements ShapeFactory {
+    private lastOperation: string | null = null;
+
     createShape(width: number, height: number): Shape {
+        this.lastOperation = `Created Rectangle with width: ${width}, height: ${height}`;
         return new Rectangle(width, height);
+    }
+
+    getLastOperation(): string | null {
+        return this.lastOperation;
     }
 }
 
 export class CircleFactory implements ShapeFactory {
+    private lastOperation: string | null = null;
+
     createShape(radius: number): Shape {
+        this.lastOperation = `Created Circle with radius: ${radius}`;
         return new Circle(radius);
+    }
+
+    getLastOperation(): string | null {
+        return this.lastOperation;
     }
 }
 
 export class TriangleFactory implements ShapeFactory {
+    private lastOperation: string | null = null;
+
     createShape(base: number, height: number): Shape {
+        this.lastOperation = `Created Triangle with base: ${base}, height: ${height}`;
         return new Triangle(base, height);
+    }
+
+    getLastOperation(): string | null {
+        return this.lastOperation;
     }
 }
 
 // Abstract factory that returns the right concrete factory
 export class ShapeFactoryProducer {
+    private static lastOperation: string | null = null;
+
     static getFactory(shapeType: ShapeType): ShapeFactory {
+        let factory: ShapeFactory;
         switch (shapeType) {
             case ShapeType.RECTANGLE:
-                return new RectangleFactory();
+                factory = new RectangleFactory();
+                this.lastOperation = `Created RectangleFactory`;
+                break;
             case ShapeType.CIRCLE:
-                return new CircleFactory();
+                factory = new CircleFactory();
+                this.lastOperation = `Created CircleFactory`;
+                break;
             case ShapeType.TRIANGLE:
-                return new TriangleFactory();
+                factory = new TriangleFactory();
+                this.lastOperation = `Created TriangleFactory`;
+                break;
             default:
-                throw new Error(`No factory found for shape type: ${shapeType}`);
+                this.lastOperation = `No factory found for shape type: ${shapeType}`;
+                throw new Error(this.lastOperation);
         }
+        return factory;
+    }
+
+    static getLastOperation(): string | null {
+        return this.lastOperation;
     }
 }

@@ -16,7 +16,13 @@ This repository contains examples of common software design patterns implemented
   - [Singleton](src/patterns/creational/singleton/README.md)
 
 - Structural Patterns
-  *(Coming soon)*
+  - [Adapter](src/patterns/structural/adapter/README.md)
+  - [Bridge](src/patterns/structural/bridge/README.md)
+  - [Composite](src/patterns/structural/composite/README.md)
+  - [Decorator](src/patterns/structural/decorator/README.md)
+  - [Facade](src/patterns/structural/facade/README.md)
+  - [Flyweight](src/patterns/structural/flyweight/README.md)
+  - [Proxy](src/patterns/structural/proxy/README.md)
 
 - Behavioral Patterns
   - [Observer](src/patterns/behavioral/observer/README.md)
