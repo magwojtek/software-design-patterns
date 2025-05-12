@@ -364,7 +364,7 @@ class Subject {
 
 - Event listeners in DOM
 - Model-View-Controller architectures
-- Reactive programming libraries (RxJS)
+- Reactive programming libraries ([RxJS](https://rxjs.dev/guide/overview), [Kefir](https://kefirjs.github.io/kefir/)([atomic](https://www.npmjs.com/package/@hitorisensei/kefir-atomic)))
 - Notification systems
 
 ## Further Considerations
