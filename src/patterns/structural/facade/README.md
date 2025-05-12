@@ -364,6 +364,23 @@ function getUserInfo(username: string, password: string, userId: number): UserDa
 - When you're creating a thin wrapper that doesn't provide any actual simplification
 - When you risk creating a "god object" that does too much or knows too much
 
+## Real-World Examples
+
+### Web Frameworks
+Frameworks like Spring, Express.js, and Django implement facades to simplify common web development tasks. For example, template rendering engines provide a simple facade over complex HTML generation and manipulation, while authentication facades abstract away the intricacies of user authentication protocols and session management.
+
+### Payment Processing Systems
+Payment gateways expose facade interfaces that hide the complexity of financial transactions. The client application makes simple "process payment" calls, while the facade handles the complex interactions with banks, credit card networks, security protocols, and regulatory compliance requirements.
+
+### Multimedia Libraries
+Libraries like FFmpeg provide facades for complex media operations. Simple function calls like "convert video" actually orchestrate dozens of subsystems for decoding, filtering, encoding, and container format handling, shielding developers from the underlying complexity of multimedia processing.
+
+### Operating System APIs
+OS APIs are facades over complex hardware and low-level software systems. File system APIs present a simple interface to open, read, and write files while hiding the complexities of disk operations, caching, permissions, and drivers. Similarly, networking APIs abstract away the details of network protocols and hardware.
+
+### Car Dashboard
+In automotive design, the dashboard is a physical facade for the complex electronic and mechanical systems of a vehicle. It provides a simplified interface (gauges, warning lights, controls) that allows drivers to interact with various subsystems without understanding their internal complexities.
+
 ## Further Considerations
 
 - **Adapter vs Facade**: While both simplify interfaces, adapters make incompatible interfaces work together, while facades simplify existing interfaces

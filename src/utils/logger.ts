@@ -12,6 +12,13 @@ export enum LogColor {
     WARNING,
     ERROR,
     EMAIL_ALERT,
+
+    // Command Pattern specific colors
+    LIGHT_DEVICE,
+    FAN_DEVICE,
+    COMMAND_SETUP,
+    COMMAND_EXECUTION,
+    COMMAND_UNDO,
 }
 
 const colorMap: Record<LogColor, (text: string) => string> = {
@@ -24,6 +31,13 @@ const colorMap: Record<LogColor, (text: string) => string> = {
     [LogColor.WARNING]: colors.warning,
     [LogColor.ERROR]: colors.error,
     [LogColor.EMAIL_ALERT]: colors.emailAlert,
+
+    // Command Pattern specific color mappings
+    [LogColor.LIGHT_DEVICE]: colors.lightDevice,
+    [LogColor.FAN_DEVICE]: colors.fanDevice,
+    [LogColor.COMMAND_SETUP]: colors.commandSetup,
+    [LogColor.COMMAND_EXECUTION]: colors.commandExecution,
+    [LogColor.COMMAND_UNDO]: colors.commandUndo,
 };
 
 // Color mapping function

@@ -303,6 +303,23 @@ const myRectangle = rectangleFactory.createShape(4, 6);
 - When you don't need to abstract away object creation
 - When the extra abstraction adds unnecessary complexity
 
+## Real-World Examples
+
+### GUI Libraries
+Most UI frameworks use factories to create platform-specific UI components. For example, a button factory might create different button implementations depending on the operating system (Windows, macOS, or Linux) while presenting a consistent interface to the application code.
+
+### Database Connectors
+Database access libraries often use the Factory pattern to create connections to different database systems (MySQL, PostgreSQL, MongoDB) while providing a unified interface for executing queries.
+
+### Payment Processing Systems
+E-commerce applications use factories to handle different payment methods (credit card, PayPal, cryptocurrency). Each payment processor implements a common interface, but the factory determines which concrete implementation to use based on the customer's selection.
+
+### Game Character Creation
+In game development, factories are used to generate different types of game characters or enemies. The game engine can spawn various character types through a common factory interface without needing to know the specific implementation details of each character.
+
+### Document Converters
+Document processing applications use factories to create different document format converters. For example, a document might need to be exported to PDF, HTML, or plain text, each requiring different converter implementations that share a common interface.
+
 ## Variations
 
 ### Simple Factory

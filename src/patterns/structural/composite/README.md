@@ -341,6 +341,23 @@ processComponent(root);
 - When performance is critical and the overhead of the pattern might be a concern
 - When you don't actually need to treat individual objects and compositions uniformly
 
+## Real-World Examples
+
+### GUI Component Hierarchies
+Modern UI frameworks like React, Angular, and Swing use the Composite pattern to build user interfaces. UI components like buttons and text fields (leaf nodes) and containers like panels and forms (composite nodes) share a common component interface, allowing them to be nested arbitrarily while being treated uniformly for rendering and event handling.
+
+### Document Object Model (DOM)
+Web browsers implement the DOM as a composite structure. HTML elements can be either simple elements (leaf nodes) or containers that hold other elements (composite nodes). JavaScript can manipulate any element through the same Element interface regardless of whether it contains children.
+
+### File System Management
+File explorers and operating systems use the Composite pattern to represent files (leaf nodes) and directories (composite nodes). Operations like calculating size, searching, or copying can be performed uniformly on both files and directories, with directories recursively applying operations to their contents.
+
+### Corporate Organization Charts
+HR systems model company structures using the Composite pattern. Individual employees (leaf nodes) and departments (composite nodes) share a common organizational unit interface. This allows operations like calculating total salary, finding reporting lines, or counting personnel to work seamlessly across the organizational hierarchy.
+
+### Menu Systems
+Application menu frameworks use the Composite pattern where menu items (leaf nodes) and submenus (composite nodes) share a common menu element interface. This allows for intuitive construction of nested menu structures while providing consistent behavior for selection and rendering.
+
 ## Further Considerations
 
 - **Caching**: Consider caching results of expensive operations like calculating the size of directories

@@ -7,6 +7,10 @@
  */
 import { logger, LogColor } from '~/utils/logger';
 
+// ==========================================
+// CORE IMPLEMENTATION - Component interfaces
+// ==========================================
+
 // Component interface - defines operations that can be altered by decorators
 export interface TextComponent {
     getText(): string;
@@ -65,6 +69,10 @@ export abstract class TextDecorator implements TextComponent {
     }
 }
 
+// ==========================================
+// CONCRETE DECORATORS - Individual decorators
+// ==========================================
+
 // Concrete Decorator - adds bold formatting
 export class BoldDecorator extends TextDecorator {
     format(): string {
@@ -113,6 +121,10 @@ export class BackgroundDecorator extends TextDecorator {
         return `<span style="background-color: ${this.bgColor}">${this.component.format()}</span>`;
     }
 }
+
+// ==========================================
+// UTILITY CLASS - Client interface
+// ==========================================
 
 // Client code that works with decorated objects
 export class TextFormatterManager {
@@ -178,7 +190,13 @@ export class TextFormatterManager {
     }
 }
 
-// Helper function to demonstrate usage
+// ==========================================
+// DEMONSTRATION FUNCTIONS
+// ==========================================
+
+/**
+ * Creates sample formatted text to demonstrate the proper pattern
+ */
 export function createSampleFormattedText(): {
     plainText: string;
     formattedComponents: Record<string, TextComponent>;

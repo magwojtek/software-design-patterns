@@ -297,6 +297,23 @@ editor.addCharacter('A', { fontFamily: 'Arial', fontSize: 12, isBold: false, col
 - When the extrinsic state is too large or complex to manage externally
 - When object identity is important to the application logic
 
+## Real-World Examples
+
+### Text Processing in Word Processors
+Word processors like Microsoft Word or Google Docs use the Flyweight pattern for character representation. Instead of each character storing its own formatting data, the application maintains a pool of character styles (font, size, color, etc.) that are shared among all instances of text with the same formatting.
+
+### Game Development
+In video games, especially those with large open worlds, developers use flyweights for rendering repeated objects like trees, grass, rocks, or buildings. Each visual instance references the same underlying 3D model and texture data (intrinsic state), while only position, rotation, and scaling (extrinsic state) are stored individually.
+
+### Browser Rendering
+Web browsers implement flyweights to efficiently render web pages. When displaying text, browsers share font resources across all instances of the same font rather than loading separate copies for each text element. Similarly, images used multiple times are loaded once and referenced from multiple places.
+
+### GUI Frameworks
+User interface libraries use flyweights for common graphical elements. Icons, cursors, and standard controls share underlying visual representations, with only their position and state being stored uniquely for each instance on screen.
+
+### String Interning
+Many programming languages use string interning (a form of flyweight) to optimize memory usage. Rather than creating duplicate copies of the same string literal, the system maintains a pool of unique strings that are shared across the program, reducing memory footprint significantly.
+
 ## Further Considerations
 
 - **Immutability**: Flyweights should be immutable to ensure they can be safely shared across contexts
