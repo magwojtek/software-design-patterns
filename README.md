@@ -26,6 +26,9 @@ This repository contains examples of common software design patterns implemented
 
 - Behavioral Patterns
   - [Observer](src/patterns/behavioral/observer/README.md)
+  - [Strategy](src/patterns/behavioral/strategy/README.md)
+  - [Iterator](src/patterns/behavioral/iterator/README.md)
+  - [Command](src/patterns/behavioral/command/README.md)
 
 ## Project Structure
 
@@ -41,7 +44,8 @@ src/
 │   │   ├── proper-pattern/
 │   │   │   ├── implementation.ts
 │   │   │   └── implementation.test.ts
-│   │   └── main.ts
+│   │   ├── main.ts
+│   │   ├── README.md
 │   └── factory/
 │       ├── ...
 ├── structural/

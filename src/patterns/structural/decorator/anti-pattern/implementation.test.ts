@@ -10,23 +10,10 @@ import {
     TextFormattingManager,
     createSampleFormattedText,
 } from './implementation';
+import { setupLoggerMock } from '~/__tests__/fixtures';
 
 // Spy on logger to check formatting output
-jest.mock('~/utils/logger', () => ({
-    logger: {
-        log: jest.fn(),
-        info: jest.fn(),
-        success: jest.fn(),
-        warning: jest.fn(),
-        error: jest.fn(),
-    },
-    LogColor: {
-        INFO: 'blue',
-        SUCCESS: 'green',
-        WARNING: 'yellow',
-        ERROR: 'red',
-    },
-}));
+setupLoggerMock();
 
 describe('Decorator Pattern - Anti-pattern Implementation', () => {
     const testText = 'Test Text';

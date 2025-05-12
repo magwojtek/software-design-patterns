@@ -237,6 +237,23 @@ class PaymentService {
 - When a simpler solution like modifying the client code is more practical
 - When it creates unnecessary indirection for simple interfaces
 
+## Real-World Examples
+
+### Legacy System Integration
+Organizations often use adapters to integrate legacy systems with modern applications. For example, a modern web application might need to access data from a legacy mainframe system. An adapter translates API calls from the web application into a format the legacy system understands, and vice versa.
+
+### Data Format Conversion
+Media libraries and document processing systems use adapters to convert between different file formats. For instance, an image processing application might use adapters to handle various image formats (JPEG, PNG, TIFF) through a unified interface.
+
+### SDK Wrappers
+When working with multiple third-party SDKs that serve similar purposes (e.g., payment gateways, cloud storage providers), developers create adapter wrappers that present a consistent interface to the application while hiding the complexity of each SDK's specific implementation details.
+
+### Cross-platform Development
+Mobile application frameworks often employ adapters to handle platform-specific features. An adapter might provide a common interface for accessing device features (camera, notifications, storage) while implementing platform-specific code for iOS and Android.
+
+### ORM (Object-Relational Mapping)
+Database ORMs like Hibernate or Sequelize serve as adapters between object-oriented code and relational databases. They adapt relational data to object structures that are more natural to work with in programming languages.
+
 ## Further Considerations
 
 - **Class vs Object Adapter**: Choose between inheritance (class) and composition (object) approaches

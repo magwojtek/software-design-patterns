@@ -1,21 +1,8 @@
 import { Character, CharacterFormatting, TextEditor, createSampleText } from './implementation';
+import { setupLoggerMock } from '~/__tests__/fixtures';
 
 // Mock the logger to avoid polluting test output
-jest.mock('../../../../utils/logger', () => ({
-    logger: {
-        log: jest.fn(),
-        info: jest.fn(),
-        warn: jest.fn(),
-        error: jest.fn(),
-        success: jest.fn(),
-    },
-    LogColor: {
-        INFO: '',
-        WARNING: '',
-        ERROR: '',
-        SUCCESS: '',
-    },
-}));
+setupLoggerMock();
 
 describe('Flyweight Anti-Pattern Implementation', () => {
     let basicFormatting: CharacterFormatting;

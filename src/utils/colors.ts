@@ -29,3 +29,10 @@ export const phoneDisplay = (text: string): string => chalk.green(text);
 export const webDisplay = (text: string): string => chalk.cyan(text);
 export const smartHome = (text: string): string => chalk.yellow(text);
 export const emailAlert = (text: string): string => chalk.red(text);
+
+// Command styles
+export const lightDevice = (text: string): string => chalk.green(text);
+export const fanDevice = (text: string): string => chalk.blue(text);
+export const commandSetup = (text: string): string => chalk.cyan(text);
+export const commandExecution = (text: string): string => chalk.white(text);
+export const commandUndo = (text: string): string => chalk.yellow(text);

@@ -16,4 +16,7 @@ export enum PatternType {
 
     // behavioral
     Observer = 'observer',
+    Strategy = 'strategy',
+    Iterator = 'iterator',
+    Command = 'command',
 }

@@ -363,6 +363,23 @@ client.displayImage("landscape"); // Second access: uses cached result
 - When the proxy would significantly change the behavior of the real subject
 - When the interface of the real subject frequently changes, making it difficult to maintain the proxy
 
+## Real-World Examples
+
+### Web Service API Clients
+API client libraries often implement proxies to handle HTTP communication with remote services. The proxy appears to the application code as a local object with simple method calls, but internally manages serialization, network requests, authentication, retries, and error handling.
+
+### Object-Relational Mapping (ORM)
+ORMs like Hibernate use proxy objects to implement lazy loading of database entities. When an application requests an entity, the ORM initially returns a proxy that loads the actual data from the database only when specific properties are accessed, improving performance for large object graphs.
+
+### Content Delivery Networks (CDNs)
+CDNs function as proxy servers that serve cached website content from locations geographically closer to users. They intercept requests for web resources, cache responses, and deliver content faster while reducing load on the origin server.
+
+### Java Dynamic Proxies
+Java's reflection API enables dynamic proxies that implement method invocation handlers. These are commonly used in frameworks like Spring to add transaction management, security checks, or performance monitoring to business objects without modifying their code.
+
+### Kubernetes Service Proxies
+In container orchestration, Kubernetes uses proxy objects to represent services. These proxies handle load balancing, service discovery, and failover, allowing applications to communicate with services using stable network identities regardless of where the actual pods are running.
+
 ## Further Considerations
 
 - **Proxy Chains**: Multiple proxies can be chained together to add different layers of functionality

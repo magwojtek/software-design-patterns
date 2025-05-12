@@ -7,6 +7,10 @@
  */
 import { logger } from '~/utils/logger';
 
+// ==========================================
+// CORE IMPLEMENTATION - Class-based formatters
+// ==========================================
+
 // Base TextFormatter class
 export class TextFormatter {
     constructor(private text: string) {}
@@ -102,6 +106,10 @@ export class BoldItalicUnderlineTextFormatter extends TextFormatter {
     }
 }
 
+// ==========================================
+// UTILITY CLASS - Client interface
+// ==========================================
+
 // TextFormattingManager - client code that works with these formatters
 export class TextFormattingManager {
     static getBoldText(text: string): string {
@@ -142,7 +150,13 @@ export class TextFormattingManager {
     // Each new option would require multiple new classes for all combinations!
 }
 
-// Helper function to demonstrate usage
+// ==========================================
+// DEMONSTRATION FUNCTIONS
+// ==========================================
+
+/**
+ * Creates sample formatted text to demonstrate the anti-pattern
+ */
 export function createSampleFormattedText(): {
     plainText: string;
     formattedExamples: Record<string, string>;

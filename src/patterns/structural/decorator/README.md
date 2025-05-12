@@ -334,6 +334,23 @@ const formattedText = formatText("Hello, Decorator Pattern!", {
 - When the overhead of multiple decorated objects might cause performance issues
 - When client code would be overly complicated by working with multiple decorator layers
 
+## Real-World Examples
+
+### Java I/O Streams
+Java's I/O library is a classic example of the Decorator pattern. Classes like BufferedInputStream, DataInputStream, and FileInputStream all implement the same InputStream interface. Base components like FileInputStream can be wrapped with decorators like BufferedInputStream (for buffered reading) or GZIPInputStream (for decompression) to add functionality.
+
+### Web Service Middleware
+Web frameworks like Express.js use the Decorator pattern for middleware functions. Each middleware decorator adds behavior to the request/response handling pipeline, such as authentication, logging, compression, or error handling, while maintaining the same interface for processing HTTP requests.
+
+### UI Component Libraries
+Frontend frameworks implement decorators for UI components. For example, a basic button component can be enhanced with decorators that add tooltip functionality, drag-and-drop capabilities, animation effects, or accessibility features while preserving the original component's interface.
+
+### Pizza Ordering Systems
+Food ordering applications, particularly for pizzas, often use the Decorator pattern. A base pizza can be decorated with various toppings (cheese, pepperoni, mushrooms) where each topping adds to the description and price of the pizza without changing the interface.
+
+### Authorization Systems
+Security frameworks use decorators to add authorization checks to service methods. A base service implements business logic, while security decorators verify permissions before delegating to the original service method, allowing security policies to be applied dynamically without modifying the underlying service code.
+
 ## Further Considerations
 
 - **Adapter vs Decorator**: While Decorator changes the object's behavior but keeps its interface, Adapter changes the interface without altering behavior.
