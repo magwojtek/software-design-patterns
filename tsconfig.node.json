@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node"
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
+}

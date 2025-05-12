@@ -1,1 +1,80 @@
-# software-design-patterns
+# Software Design Patterns Examples
+
+This repository contains examples of common software design patterns implemented in TypeScript. Each example includes:
+
+- Anti-pattern implementation (how NOT to do it)
+- Proper pattern implementation (the recommended approach)
+- Unit tests for pattern validation
+- Main script to demonstrate the pattern in action
+
+## Available Patterns
+
+- Creational Patterns
+  - [Factory](src/patterns/creational/factory/README.md)
+  - [Builder](src/patterns/creational/builder/README.md)
+  - [Prototype](src/patterns/creational/prototype/README.md)
+  - [Singleton](src/patterns/creational/singleton/README.md)
+
+- Structural Patterns
+  - [Adapter](src/patterns/structural/adapter/README.md)
+  - [Bridge](src/patterns/structural/bridge/README.md)
+  - [Composite](src/patterns/structural/composite/README.md)
+  - [Decorator](src/patterns/structural/decorator/README.md)
+  - [Facade](src/patterns/structural/facade/README.md)
+  - [Flyweight](src/patterns/structural/flyweight/README.md)
+  - [Proxy](src/patterns/structural/proxy/README.md)
+
+- Behavioral Patterns
+  - [Observer](src/patterns/behavioral/observer/README.md)
+
+## Project Structure
+
+Patterns are organized by their categories with the following structure:
+
+```
+src/
+├── creational/
+│   ├── singleton/
+│   │   ├── anti-pattern/
+│   │   │   ├── implementation.ts
+│   │   │   └── implementation.test.ts
+│   │   ├── proper-pattern/
+│   │   │   ├── implementation.ts
+│   │   │   └── implementation.test.ts
+│   │   └── main.ts
+│   └── factory/
+│       ├── ...
+├── structural/
+│   └── ...
+└── behavioral/
+    ├── observer/
+    │   ├── ...
+    └── ...
+```
+
+## Running the Examples
+
+To run an individual pattern example:
+
+```bash
+yarn start:pattern pattern-name
+```
+
+Examples:
+```bash
+yarn start:pattern singleton
+yarn start:pattern factory
+yarn start:pattern observer
+```
+
+To run all tests:
+
+```bash
+yarn test
+```
+
+## Development
+
+- `yarn build` - Build the TypeScript project
+- `yarn lint` - Run ESLint
+- `yarn format` - Format the code with Prettier
