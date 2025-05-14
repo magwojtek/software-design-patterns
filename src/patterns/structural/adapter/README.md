@@ -34,6 +34,17 @@ Sometimes you have existing classes that you can't change, but their interfaces 
                                                                └────────────────────┘
 ```
 
+## Scenario
+
+Imagine you're building a payment processing system for an e-commerce platform that needs to work with multiple payment providers. Your company has been using a legacy payment gateway for years, but now wants to integrate with modern payment processors to offer customers more options.
+
+**The problem:**
+1. The legacy payment gateway has a completely different API from modern payment processors
+2. You cannot modify the code of either the legacy system or the new payment processors
+3. Your e-commerce platform needs a consistent way to process payments regardless of which provider is used
+4. The system should be able to easily add new payment processors in the future
+5. There should be minimal changes to the existing client code that processes payments
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -253,6 +264,22 @@ Mobile application frameworks often employ adapters to handle platform-specific 
 
 ### ORM (Object-Relational Mapping)
 Database ORMs like Hibernate or Sequelize serve as adapters between object-oriented code and relational databases. They adapt relational data to object structures that are more natural to work with in programming languages.
+
+## Open-Source Examples
+
+Here are some examples of the Adapter pattern in popular open-source TypeScript projects:
+
+- **TypeORM**: Uses adapters to support different database drivers through a consistent interface.
+  - [TypeORM Database Driver](https://github.com/typeorm/typeorm/blob/master/src/driver/Driver.ts)
+  - Example: Each database type (MySQL, PostgreSQL, etc.) has an adapter that implements the common Driver interface
+
+- **Axios**: Adapts different environments (browser, Node.js) to provide a consistent HTTP client API.
+  - [Axios Adapters](https://github.com/axios/axios/tree/master/lib/adapters)
+  - The library uses adapters to handle HTTP requests consistently across platforms
+
+- **NestJS**: Uses adapters for various transports and protocols in its microservices module.
+  - [NestJS Transport Adapters](https://github.com/nestjs/nest/tree/master/integration/microservices/src)
+  - Each transport (Redis, MQTT, gRPC) has an adapter implementing a common interface
 
 ## Further Considerations
 

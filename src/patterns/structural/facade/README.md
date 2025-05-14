@@ -48,6 +48,17 @@ Examples include working with multimedia frameworks, database libraries, complex
                             └──────────────────────────────┘
 ```
 
+## Scenario
+
+Imagine you're developing an enterprise application with a user management component. This component needs to handle operations like retrieving user data, authenticating users, validating inputs, and managing database connections.
+
+**The problem:**
+1. Different parts of the application need user data but shouldn't need to understand the details of database connections, authentication, and validation
+2. Client code that needs to interact with the user system has to coordinate multiple services and their lifecycle
+3. Changes in any of these services might affect all clients that use them directly
+4. Developers working on client code need to understand the entire user subsystem to use it correctly
+5. Operations like "get user info" require multiple steps across different services, making client code complex and error-prone
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -380,6 +391,22 @@ OS APIs are facades over complex hardware and low-level software systems. File s
 
 ### Car Dashboard
 In automotive design, the dashboard is a physical facade for the complex electronic and mechanical systems of a vehicle. It provides a simplified interface (gauges, warning lights, controls) that allows drivers to interact with various subsystems without understanding their internal complexities.
+
+## Open-Source Examples
+
+Here are some examples of the Facade pattern in popular open-source TypeScript projects:
+
+- **TypeORM**: The Repository classes act as facades for database operations.
+  - [TypeORM Repository](https://github.com/typeorm/typeorm/blob/master/src/repository/Repository.ts)
+  - These repositories provide simplified methods like find(), save(), and remove() that hide the complexity of SQL query generation and connection management
+
+- **NestJS**: The core module system provides facades for complex dependency management.
+  - [NestJS Module System](https://github.com/nestjs/nest/blob/master/packages/core/injector/module.ts)
+  - NestJS modules encapsulate providers and controllers behind a simple registration API
+
+- **TypeScript Compiler API**: The ts.createProgram function is a facade over the complex process of parsing, binding, and type checking TypeScript code.
+  - [TypeScript Program](https://github.com/microsoft/TypeScript/blob/main/src/compiler/program.ts)
+  - This API hides the complexity of the compilation process behind simple method calls
 
 ## Further Considerations
 

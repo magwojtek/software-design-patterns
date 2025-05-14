@@ -30,6 +30,18 @@ Imagine you need to create a complex object that requires multiple steps or has 
                          └───────────────┘
 ```
 
+## Scenario
+
+Imagine you're developing an e-commerce application that needs to create various types of product configurations for different customers. Each product (like a computer) can have dozens of customizable components and options:
+
+**The problem:**
+1. Products have many configurable components (CPU, RAM, storage, GPU, etc.)
+2. Some components are required, while others are optional
+3. Different component combinations need validation (not all components are compatible)
+4. The ordering process should allow customers to build their product step-by-step
+5. The system needs to create pre-configured products (gaming PC, office workstation, etc.)
+6. Product configurations should be saveable and reusable as templates
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -290,6 +302,14 @@ const computer = builder
 - Document builders for constructing complex XML or HTML documents
 - UI builders for constructing complex user interfaces
 - Test data builders for creating test fixtures
+
+## Open-Source Examples
+
+Here are some examples of the Builder pattern in popular open-source TypeScript projects:
+
+- [TypeORM](https://github.com/typeorm/typeorm/tree/master/src/query-builder) - Uses builders for creating database queries (QueryBuilder)
+- [NestJS](https://github.com/nestjs/nest) - Uses builders in its testing framework and module configuration
+- [InversifyJS](https://github.com/inversify/InversifyJS) - Implements builders for container binding configuration
 
 ## Further Considerations
 

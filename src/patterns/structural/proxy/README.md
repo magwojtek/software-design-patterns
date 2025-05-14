@@ -43,6 +43,17 @@ Using objects like these directly can lead to code that:
         delegates to
 ```
 
+## Scenario
+
+Imagine you're developing an image gallery application that needs to display high-resolution images. The application has the following requirements:
+
+**The problem:**
+1. Loading the full image database into memory is expensive and should only happen when necessary
+2. Different users have different access rights to certain images (public vs. premium content)
+3. Frequently accessed images should be cached to improve performance
+4. All image access should be logged for analytics and security purposes
+5. The application should work on both desktop and mobile platforms with different memory constraints
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -379,6 +390,18 @@ Java's reflection API enables dynamic proxies that implement method invocation h
 
 ### Kubernetes Service Proxies
 In container orchestration, Kubernetes uses proxy objects to represent services. These proxies handle load balancing, service discovery, and failover, allowing applications to communicate with services using stable network identities regardless of where the actual pods are running.
+
+## Open-Source Examples
+
+Here are some examples of the Proxy pattern in popular open-source TypeScript projects:
+
+- **TypeORM**: Uses lazy relations as proxies to database entities.
+  - [TypeORM LazyRelation](https://github.com/typeorm/typeorm/blob/master/src/query-builder/RelationLoader.ts)
+  - Example: Relations are loaded only when accessed, improving performance for large entity relationships
+
+- **NestJS**: Uses proxy objects for method interception in its Guard and Interceptor features.
+  - [NestJS Interceptors](https://github.com/nestjs/nest/blob/master/packages/core/interceptors/interceptors-consumer.ts)
+  - Interceptors act as proxies to add extra functionality around method execution like logging, exception handling, and response transformation
 
 ## Further Considerations
 

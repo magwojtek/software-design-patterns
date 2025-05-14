@@ -42,6 +42,19 @@ Writing code that works with these tree structures can be complicated because yo
               └───────────┘
 ```
 
+## Scenario
+
+Imagine you're building a file explorer application that needs to display and manage a file system hierarchy. The system must handle both individual files (leaf nodes) and directories (composite nodes) that can contain files and other directories.
+
+**The problem:**
+1. You need to calculate the total size of any file system entity (individual files or entire directories)
+2. You need to display the structure with proper indentation showing the hierarchy
+3. You need to search for entities by name across the entire file system
+4. You need to perform operations like copy, move, or delete on both files and directories
+5. The user should be able to interact with both files and directories through a consistent interface
+
+The challenge is to design a system where client code can work with all these entities uniformly without needing to know whether it's dealing with a file or a directory, while still allowing directories to manage their children.
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -357,6 +370,26 @@ HR systems model company structures using the Composite pattern. Individual empl
 
 ### Menu Systems
 Application menu frameworks use the Composite pattern where menu items (leaf nodes) and submenus (composite nodes) share a common menu element interface. This allows for intuitive construction of nested menu structures while providing consistent behavior for selection and rendering.
+
+## Open-Source Examples
+
+Here are some examples of the Composite pattern in popular open-source TypeScript projects:
+
+- **VS Code**: The workbench UI system uses a composite pattern for its view management.
+  - [VS Code ViewComposite](https://github.com/microsoft/vscode/blob/main/src/vs/workbench/browser/composite.ts)
+  - UI elements are composed into hierarchical structures while sharing a common interface
+
+- **TypeORM**: The query builder uses a composite pattern for SQL query construction.
+  - [TypeORM QueryBuilder](https://github.com/typeorm/typeorm/blob/master/src/query-builder/QueryBuilder.ts)
+  - Query parts can be composed into larger, more complex queries while maintaining a uniform interface
+
+- **NestJS**: The module system uses composition to build application structure.
+  - [NestJS Module](https://github.com/nestjs/nest/blob/master/packages/core/injector/module.ts)
+  - Modules can contain other modules, creating a hierarchical structure of application components
+
+- **Excalibur.js**: The game engine uses a composite pattern for scene management.
+  - [Excalibur Actor System](https://github.com/excaliburjs/Excalibur/blob/main/src/engine/Actor.ts)
+  - Game entities can contain child entities, forming a scene graph where operations cascade to children
 
 ## Further Considerations
 

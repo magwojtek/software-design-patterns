@@ -14,6 +14,21 @@ When working with collections of objects, we often face several challenges:
 - Hard to implement different traversal strategies (forward, backward, filtered)
 - Collections expose their internal structure, violating encapsulation
 
+## Scenario
+
+Imagine you're building a digital library system that needs to work with various types of book collections. Your system contains:
+
+1. An ordered array-based collection of books organized by publication date
+2. A map-based collection that stores books with their ISBN as keys
+3. A specialized tree structure that organizes books by genre and then by author
+
+**The problem:**
+1. Your client code needs to display books in a consistent way regardless of the collection type
+2. You want to add new collection types in the future without changing existing client code
+3. Different views of the library need different traversal methods (e.g., forward for newest books, filtered by author, etc.)
+4. You need to maintain encapsulation of the internal collection structures
+5. You want to avoid duplicating traversal logic for each collection type
+
 ## Diagram
 
 ```
@@ -25,15 +40,15 @@ When working with collections of objects, we often face several challenges:
         │                          │
         │ has                      │ implemented by
         ▼                          │
-┌───────────────┐          ┌───────┼───────┐
-│ + iterator()  │          │       │       │
-└───────┬───────┘     ┌────▼─┐ ┌───▼──┐ ┌──▼───┐
-        │            │ Iter1 │ │ Iter2 │ │ Iter3 │
-  implemented by     └──────┘ └──────┘ └──────┘
+┌───────────────┐         ┌────────┼─────────┐
+│ + iterator()  │         │        │         │
+└───────┬───────┘    ┌────▼──┐  ┌──▼────┐ ┌──▼────┐
+        │            │ Iter1 │  │ Iter2 │ │ Iter3 │
+  implemented by     └───────┘  └───────┘ └───────┘
         │
-┌───────┼───────┐
-│       │       │
-┌───────▼─┐ ┌───▼───┐
+  ┌─────┼───────┐
+  │     │       │
+┌─▼─────▼─┐ ┌───▼───┐
 │ Array   │ │ Map   │
 │ Coll.   │ │ Coll. │
 └─────────┘ └───────┘
@@ -243,15 +258,15 @@ library.displayBooks(mapCollection);
 ┌──────────────────────────────────────────────────────────┐
 │                     ANTI-PATTERN                         │
 └──────────────────────────────────────────────────────────┘
-    ┌───────────────┐           ┌────────────┐
-    │ BookCollection│- - - - - >│Client Code │
-    │ - displayBooks│           │ - depends  │
-    └───────────────┘           │   on       │
-                                │   specific │
-    ┌───────────────┐           │   methods  │
-    │ BookDirectory │- - - - - >│            │
-    │ - listBooks   │           │            │
-    └───────────────┘           └────────────┘
+   ┌────────────────┐           ┌──────────────────────────┐
+   │ BookCollection │- - - - - >│ Client Code              │
+   │ - displayBooks │           │ - depends on specific    │
+   └────────────────┘           │   methods                │
+                                │                          │
+   ┌────────────────┐           │                          │
+   │ BookDirectory  │- - - - - >│                          │
+   │ - listBooks    │           │                          │
+   └────────────────┘           └──────────────────────────┘
     
     Different methods for each collection type
     Internal structure exposed
@@ -261,25 +276,25 @@ library.displayBooks(mapCollection);
 └──────────────────────────────────────────────────────────┘
 
     ┌───────────────┐           ┌──────────────┐
-    │«interface»    │           │ «interface»  │
-    │Collection     │<>- - - - >│ Iterator     │
+    │ «interface»   │           │ «interface»  │
+    │ Collection    │<>- - - - >│ Iterator     │
     └───────┬───────┘           └─────┬────────┘
             ▲                         ▲
             │                         │
-    ┌───────┼───────┐                 │
-    │       │       │                 │
-┌─────┴───┐  ┌─┴────┐           ┌─────┴─────────┐
-│BookArray│  │BookMap│           │               │
-└─────────┘  └──────┘      ┌────┴──┐   ┌────────┴─┐
-                          │ArrayIter│   │ MapIter  │
-                          └────────┘   └──────────┘
+      ┌─────┼───────┐                 │
+      │             │                 │
+┌─────┴─────┐  ┌────┴────┐      ┌─────┴─────────┐
+│ BookArray │  │ BookMap │      │               │
+└───────────┘  └─────────┘ ┌────┴──────┐   ┌────┴─────┐
+                           │ ArrayIter │   │ MapIter  │
+                           └───────────┘   └──────────┘
                           
-    ┌────────────┐
-    │Client Code │
-    │ - works    │<- - - - - - - - - Collection interface
-    │   with     │<- - - - - - - - - Iterator interface
-    │   interfaces│
-    └────────────┘
+    ┌──────────────┐
+    │ Client Code  │
+    │ - works      │<- - - - - - - - - Collection interface
+    │   with       │<- - - - - - - - - Iterator interface
+    │   interfaces │
+    └──────────────┘
 ```
 
 ## Best Practices
@@ -387,6 +402,22 @@ class FilteredIterator<T> implements Iterator<T> {
 - C#'s IEnumerable and IEnumerator interfaces
 - Python's iter() and next() functions
 - Database cursors for traversing query results
+
+## Open-Source Examples
+
+Here are some examples of the Iterator pattern in popular open-source TypeScript projects:
+
+- **TypeORM**: Uses iterators for traversing query results efficiently.
+  - [TypeORM EntityManager](https://github.com/typeorm/typeorm/blob/master/src/entity-manager/EntityManager.ts)
+  - The QueryRunner and find operations return results that can be iterated over in a consistent way
+
+- **Immutable.js**: This popular immutable collections library implements iterators for its various data structures.
+  - [Immutable.js Collection](https://github.com/immutable-js/immutable-js/blob/master/src/Collection.js)
+  - All collections implement the iterable interface, allowing consistent traversal regardless of underlying implementation
+
+- **NestJS**: Uses iterators in its module system for scanning and processing metadata.
+  - [NestJS Module Scanner](https://github.com/nestjs/nest/blob/master/packages/core/scanner.ts)
+  - The ModuleScanner uses iterator patterns to traverse the module dependency graph
 
 ## Further Considerations
 

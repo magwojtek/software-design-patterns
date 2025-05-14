@@ -33,6 +33,15 @@ Sometimes we want to ensure that a class has just a single instance throughout t
 └───────────────────────────────────────┘
 ```
 
+## Scenario
+
+Imagine you're developing a web application that needs to interact with a database. Database connections are resource-intensive to create and maintain, and having too many connections can lead to performance issues or even application crashes.
+
+**The problem:**
+1. The application needs a reliable way to access the database
+2. Connection parameters (server, credentials, etc.) should be configured only once
+3. The application needs to limit the total number of database connections to prevent resource exhaustion
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -214,6 +223,22 @@ Memory caches in applications are often implemented as singletons to provide a c
 
 ### Thread Pools
 In multi-threaded applications, thread pools are typically implemented as singletons. This provides centralized management of thread creation, scheduling, and lifecycle, preventing thread proliferation while optimizing resource utilization.
+
+## Open-Source Examples
+
+Here are some examples of the Singleton pattern in popular open-source TypeScript projects:
+
+- **TypeORM**: The connection manager uses a singleton approach to manage database connections.
+  - [TypeORM ConnectionManager](https://github.com/typeorm/typeorm/blob/master/src/connection/ConnectionManager.ts)
+  - Example: The `ConnectionManager` handles all database connections in the application and ensures proper connection management and reuse.
+
+- **NestJS**: Uses singleton providers for services and controllers by default.
+  - [NestJS Core](https://github.com/nestjs/nest/blob/master/packages/core/injector/instance-wrapper.ts)
+  - The dependency injection system ensures services are instantiated only once (singleton scope by default).
+
+- **Angular**: Many Angular services are implemented as singletons by using the providedIn: 'root' property.
+  - [Angular Core](https://github.com/angular/angular/blob/main/packages/core/src/di/injectable.ts)
+  - Example: `@Injectable({ providedIn: 'root' })` creates singleton services.
 
 ## Further Considerations
 

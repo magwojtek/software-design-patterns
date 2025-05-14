@@ -61,6 +61,21 @@ Common examples include:
                                  └─────────────────────────┘
 ```
 
+## Scenario
+
+Imagine you're developing a rich text editor application like Microsoft Word or Google Docs that needs to represent and render a document with thousands or even millions of characters. Each character in the document might have different formatting properties such as:
+
+- Font family (Arial, Times New Roman, etc.)
+- Font size (10pt, 12pt, etc.)
+- Style attributes (bold, italic, underline)
+- Color (thousands of possible colors)
+- Position coordinates on the screen
+
+**The problem:**
+1. Many characters share identical formatting (e.g., paragraphs of text with the same font and size)
+2. When users edit formatting, all characters with the same formatting need to be updated consistently
+3. The application needs to maintain responsive performance even with very large documents
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -313,6 +328,22 @@ User interface libraries use flyweights for common graphical elements. Icons, cu
 
 ### String Interning
 Many programming languages use string interning (a form of flyweight) to optimize memory usage. Rather than creating duplicate copies of the same string literal, the system maintains a pool of unique strings that are shared across the program, reducing memory footprint significantly.
+
+## Open-Source Examples
+
+Here are some examples of the Flyweight pattern in popular open-source TypeScript projects:
+
+- **VS Code**: The text editor implements flyweight for efficient rendering of text and sharing styling information
+  - [VS Code TextModel](https://github.com/microsoft/vscode/blob/main/src/vs/editor/common/model/textModel.ts)
+  - Example: Text styling and theming information is shared across multiple instances instead of duplicating it
+
+- **TypeScript**: The compiler uses flyweight for type symbol management and string interning
+  - [TypeScript StringTable](https://github.com/microsoft/TypeScript/blob/main/src/compiler/utilities.ts)
+  - Example: Identical strings are stored only once and referenced throughout the compilation process
+
+- **Monaco Editor**: The editor that powers VS Code uses flyweight for token styling and model data
+  - [Monaco Editor](https://github.com/microsoft/monaco-editor/blob/main/src/language/css/cssMode.ts)
+  - Example: Styling tokens are shared across all instances of similar syntax elements
 
 ## Further Considerations
 

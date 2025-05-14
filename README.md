@@ -9,13 +9,13 @@ This repository contains examples of common software design patterns implemented
 
 ## Available Patterns
 
-- Creational Patterns
+- [Creational Patterns](src/patterns/creational/README.md)
   - [Factory](src/patterns/creational/factory/README.md)
   - [Builder](src/patterns/creational/builder/README.md)
   - [Prototype](src/patterns/creational/prototype/README.md)
   - [Singleton](src/patterns/creational/singleton/README.md)
 
-- Structural Patterns
+- [Structural Patterns](src/patterns/structural/README.md)
   - [Adapter](src/patterns/structural/adapter/README.md)
   - [Bridge](src/patterns/structural/bridge/README.md)
   - [Composite](src/patterns/structural/composite/README.md)
@@ -24,7 +24,7 @@ This repository contains examples of common software design patterns implemented
   - [Flyweight](src/patterns/structural/flyweight/README.md)
   - [Proxy](src/patterns/structural/proxy/README.md)
 
-- Behavioral Patterns
+- [Behavioral Patterns](src/patterns/behavioral/README.md)
   - [Observer](src/patterns/behavioral/observer/README.md)
   - [Strategy](src/patterns/behavioral/strategy/README.md)
   - [Iterator](src/patterns/behavioral/iterator/README.md)
