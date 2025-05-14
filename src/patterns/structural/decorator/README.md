@@ -42,6 +42,17 @@ Using inheritance to extend behavior would lead to an explosion of subclasses as
      └────────────┘
 ```
 
+## Scenario
+
+Imagine you're developing a text editor application that needs to support various formatting options for text. Users should be able to apply different style combinations like bold, italic, underline, and different colors to any selected text.
+
+**The problem:**
+1. Text can have multiple formatting options applied simultaneously (bold + italic + color)
+2. Different formatting combinations shouldn't require creating new classes for each possible combination
+3. Formatting should be applicable dynamically at runtime based on user selection
+4. New formatting options should be easy to add without modifying existing code
+5. The application should handle nested formatting correctly (e.g., bold text within colored text)
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -350,6 +361,26 @@ Food ordering applications, particularly for pizzas, often use the Decorator pat
 
 ### Authorization Systems
 Security frameworks use decorators to add authorization checks to service methods. A base service implements business logic, while security decorators verify permissions before delegating to the original service method, allowing security policies to be applied dynamically without modifying the underlying service code.
+
+## Open-Source Examples
+
+Here are some examples of the Decorator pattern in popular open-source TypeScript projects:
+
+- **Angular**: Uses decorators extensively throughout its framework, particularly for component metadata.
+  - [Angular Component Decorator](https://github.com/angular/angular/blob/master/packages/core/src/metadata/directives.ts)
+  - Example: The `@Component()` decorator adds metadata to a class, transforming it into a component
+
+- **NestJS**: Uses the decorator pattern for its HTTP request handlers and middleware.
+  - [NestJS Guards](https://github.com/nestjs/nest/blob/master/packages/common/decorators/core/use-guards.decorator.ts)
+  - Example: The `@UseGuards()` decorator enhances controller methods with authentication/authorization layers
+
+- **TypeORM**: Implements decorators for entity definition and relationship management.
+  - [TypeORM Entity Decorators](https://github.com/typeorm/typeorm/blob/master/src/decorator/entity/Entity.ts)
+  - Example: The `@Entity()` decorator transforms a class into a database entity
+
+- **TypeStack/class-transformer**: A library dedicated to transform objects from one class to another.
+  - [Class Transformer](https://github.com/typestack/class-transformer)
+  - Uses decorators like `@Expose()` and `@Type()` to control serialization/deserialization behavior
 
 ## Further Considerations
 

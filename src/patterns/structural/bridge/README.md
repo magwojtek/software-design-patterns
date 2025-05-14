@@ -33,6 +33,10 @@ As the number of variations grows, the class hierarchy explodes in complexity, c
                                       └─────────────────┘
 ```
 
+## Scenario
+
+Imagine you're building a drawing application that needs to render various shapes (circles, rectangles, triangles) on different platforms or rendering engines (Canvas, SVG, WebGL). As your application grows, you need to support more shapes and more rendering platforms.
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -362,6 +366,18 @@ Graphics systems like DirectX and OpenGL use the Bridge pattern to separate grap
 
 ### Remote Service Communication
 Distributed application frameworks use the Bridge pattern to separate service interfaces from their communication protocols. A service can be accessed through different protocols (HTTP, gRPC, WebSockets) while maintaining the same API, allowing the communication method to change without affecting service consumers.
+
+## Open-Source Examples
+
+Here are some examples of the Bridge pattern in popular open-source TypeScript projects:
+
+- **TypeORM**: This ORM framework uses the Bridge pattern to separate database entity definitions from database-specific implementations.
+  - [TypeORM Entity Manager](https://github.com/typeorm/typeorm/blob/master/src/entity-manager/EntityManager.ts)
+  - The EntityManager serves as a bridge between entity operations and specific database drivers
+
+- **Nest.js**: Uses Bridge pattern with its modular architecture.
+  - [Nest HTTP Adapter](https://github.com/nestjs/nest/blob/master/packages/core/adapters/http-adapter.ts)
+  - The HttpAdapter acts as a bridge between Nest.js framework and different HTTP server implementations (Express, Fastify)
 
 ## Further Considerations
 

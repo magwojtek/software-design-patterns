@@ -37,6 +37,17 @@ The naive approach is to use conditional statements to select the appropriate al
                   └───────┘ └──────┘ └──────┘
 ```
 
+## Scenario
+
+Imagine you are developing a navigation application that needs to provide routing directions between locations using different transportation methods (car, public transport, walking).
+
+**The problem:**
+1. Different transportation modes require completely different routing algorithms
+2. Users need to switch between navigation modes instantly at runtime
+3. The app needs to display different route visualizations and ETA calculations based on the mode
+4. New transportation options (like bicycles or scooters) need to be added regularly
+5. The same routing strategies might be needed in other parts of the application, like trip planning or cost estimation
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -361,6 +372,17 @@ const numericSorter = new QuickSort<number>((a, b) => a - b);
 - Compression algorithms (zip, gzip, bzip2)
 - Authentication strategies (OAuth, JWT, Basic Auth)
 - Route-finding algorithms in navigation systems
+
+## Open-Source Examples
+
+Here are some examples of the Strategy pattern in popular open-source TypeScript projects:
+
+- **NestJS**: Uses the Strategy pattern for authentication strategies.
+  - [NestJS Passport Strategies](https://github.com/nestjs/passport/tree/master/lib)
+  - Different authentication strategies (JWT, OAuth, Local) implement a common interface and can be used interchangeably
+
+- **TypeORM**: Implements various database drivers as strategies.
+  - [TypeORM Database Naming Strategy](https://github.com/typeorm/typeorm/tree/master/src/naming-strategy)
 
 ## Further Considerations
 

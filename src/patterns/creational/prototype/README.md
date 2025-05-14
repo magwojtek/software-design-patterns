@@ -41,6 +41,17 @@ Sometimes creating a new object from scratch is resource-intensive, complex, or 
 └────────────────────────────────────────┘
 ```
 
+## Scenario
+
+Imagine you're developing a character creation system for a role-playing game. Players can create custom characters by choosing from various classes (warrior, mage, archer), each with different base attributes, abilities, and equipment.
+
+**The problem:**
+1. Creating a character from scratch involves expensive operations like loading assets, generating default statistics, and initializing inventory
+2. Many characters share the same base attributes but differ in small ways (name, appearance, minor stat adjustments)
+3. The game needs to quickly generate NPCs (non-player characters) based on standard templates but with slight variations
+4. Players want to clone their existing characters to try different builds without starting over
+5. The game should support saving "builds" that can be shared with other players
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -273,6 +284,18 @@ Software configuration systems often use prototyping to create new environments 
 
 ### User Interface Components
 UI frameworks implement prototyping for reusable components. A complex form or custom control can be defined once as a prototype, then cloned whenever needed in the application, with only the necessary properties changed for each instance.
+
+## Open-Source Examples
+
+Here are some examples of the Prototype pattern in popular open-source TypeScript projects:
+
+- **TypeORM**: Uses prototype-like patterns for entity creation and cloning
+  - [TypeORM Entity Manager](https://github.com/typeorm/typeorm/blob/master/src/entity-manager/EntityManager.ts)
+  - Example: The `create` method clones entity prototypes for efficient instantiation
+
+- **TSyringe**: TypeScript dependency injection container uses prototypical inheritance
+  - [TSyringe Container](https://github.com/microsoft/tsyringe/blob/master/src/dependency-container.ts)
+  - Example: The container creates instances using prototype registrations
 
 ## Further Considerations
 

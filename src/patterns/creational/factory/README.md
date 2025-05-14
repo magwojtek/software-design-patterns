@@ -51,6 +51,19 @@ Creating objects directly using the `new` operator leads to tight coupling betwe
 └────────┘                    └─────────┘
 ```
 
+## Scenario
+
+Imagine you're developing a cross-platform graphics application that needs to render different shapes according to user selections. Your application must support circles, rectangles, and triangles, with the possibility of adding more shape types in the future.
+
+**The problem:**
+1. Different shapes have unique properties and behaviors (circles have radius, rectangles have width/height)
+2. The application needs to create shapes based on user input at runtime
+3. The UI code that requests shapes should not need to understand the details of each shape implementation
+4. Adding a new shape type (like hexagon) should require minimal changes to existing code
+5. For testing, you need to be able to substitute real shapes with mock implementations
+
+This is a perfect use case for the Factory pattern, which can abstract away the shape creation logic and provide a clean interface for the client code.
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -276,7 +289,7 @@ const myRectangle = rectangleFactory.createShape(4, 6);
               │             │             │                │
               ▼             ▼             ▼                │
         ┌──────────┐  ┌──────────┐  ┌──────────┐ implements│
-        │Rectangle │  │ Circle   │  │ Triangle │◄───────── │
+        │Rectangle │  │ Circle   │  │ Triangle │◄──────────┘
         └──────────┘  └──────────┘  └──────────┘
 ```
 
@@ -330,6 +343,22 @@ Defines an interface for creating objects, but lets subclasses decide which clas
 
 ### Abstract Factory
 Provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+
+## Open-Source Examples
+
+Here are examples of the Factory Pattern in popular open-source TypeScript projects:
+
+- **Angular**
+    - Angular's [ComponentFactoryResolver](https://github.com/angular/angular/blob/main/packages/core/src/linker/component_factory_resolver.ts)
+    - Implementation of the Factory pattern that creates component factories, which are then used to create component instances dynamically.
+- **NestJS**
+    - NestJS uses the Factory pattern extensively in its dependency injection system.
+    - For example, the [InstanceLoader](https://github.com/nestjs/nest/blob/master/packages/core/injector/instance-loader.ts) creates instances of controllers and providers.
+- **TypeORM**
+    - TypeORM uses a [ConnectionManager](https://github.com/typeorm/typeorm/blob/master/src/connection/ConnectionManager.ts)
+    - It acts as a factory for database connections, creating connections based on specified configuration options.
+-  **Redux Toolkit**
+    - Redux Toolkit's [createSlice](https://github.com/reduxjs/redux-toolkit/blob/master/packages/toolkit/src/createSlice.ts) and [createAction](https://github.com/reduxjs/redux-toolkit/blob/master/packages/toolkit/src/createAction.ts) functions are factory methods that produce Redux reducers and actions.
 
 ## Further Considerations
 

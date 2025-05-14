@@ -32,6 +32,17 @@ In many scenarios, we need objects to be notified when something they depend on 
 └───────────────┘
 ```
 
+## Scenario
+
+Imagine you're building a weather monitoring application that collects data from various weather sensors and needs to notify multiple display devices and systems when conditions change.
+
+**The problem:**
+1. A weather station collects temperature, humidity, and pressure data
+2. Multiple display types (phone app, web dashboard, smart home system) need to be updated with the latest weather data
+3. Displays should be dynamically added or removed without modifying the weather station
+4. The weather station shouldn't need to know the specific types of displays showing its data
+5. Different displays may need to present the data in their own format or take specific actions based on weather conditions
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -366,6 +377,14 @@ class Subject {
 - Model-View-Controller architectures
 - Reactive programming libraries ([RxJS](https://rxjs.dev/guide/overview), [Kefir](https://kefirjs.github.io/kefir/)([atomic](https://www.npmjs.com/package/@hitorisensei/kefir-atomic)))
 - Notification systems
+
+## Open-Source Examples
+
+Here are some examples of the Observer pattern in popular open-source TypeScript projects:
+
+- **VS Code**: Uses event emitters for many internal communication mechanisms:
+  - [Event implementation](https://github.com/microsoft/vscode/blob/main/src/vs/base/common/event.ts)
+  - VS Code's event system implements the observer pattern to manage subscriptions to various IDE events
 
 ## Further Considerations
 

@@ -37,6 +37,17 @@ In many scenarios, we need to decouple the object that invokes an operation from
                  └──────────┘
 ```
 
+## Scenario
+
+Imagine you're developing a home automation system with a universal remote control that can operate various devices like lights, ceiling fans, audio systems, and thermostats. The remote has multiple buttons, and each button should control a specific device action.
+
+**The problem:**
+1. The remote control (invoker) needs to work with any device (receiver) without being tightly coupled to them
+2. Users want to be able to reprogram buttons to control different devices or actions
+3. The system should support an "undo" button to revert the last operation
+4. New devices should be easily integrated without modifying the remote control
+5. For advanced users, some buttons should execute multiple operations in sequence (macros)
+
 ## Anti-Pattern vs Proper Pattern
 
 ### Anti-Pattern Implementation
@@ -361,6 +372,26 @@ class CommandQueue {
 - Task schedulers and batch processing systems
 - Multi-level undo-redo functionality in applications
 - Remote procedure calls
+
+## Open-Source Examples
+
+Here are some examples of the Command pattern in popular open-source TypeScript projects:
+
+- **VS Code**: The command system in VS Code uses this pattern extensively. Commands are registered and executed through a central command registry.
+  - [VS Code Commands API](https://github.com/microsoft/vscode/blob/main/src/vs/platform/commands/common/commands.ts)
+  - Example: Commands are registered and can be executed by ID from anywhere in the application
+
+- **Angular**: Uses commands for handling user actions in reactive forms and state management.
+  - [Angular Material Dialog](https://github.com/angular/components/blob/main/src/material/dialog/dialog.ts)
+  - The MatDialogRef provides commands like close() and backdropClick() that encapsulate dialog operations
+
+- **NestJS**: Uses command handlers in CQRS (Command Query Responsibility Segregation) pattern implementation.
+  - [NestJS CQRS Commands](https://github.com/nestjs/cqrs/blob/master/src/command-bus.ts)
+  - Commands are dispatched via a CommandBus that routes them to the appropriate handlers
+
+- **TypeORM**: Implements database transactions using command-like patterns.
+  - [TypeORM QueryRunner](https://github.com/typeorm/typeorm/blob/master/src/query-runner/QueryRunner.ts)
+  - Database operations are encapsulated in commands that can be executed and rolled back
 
 ## Further Considerations
 
