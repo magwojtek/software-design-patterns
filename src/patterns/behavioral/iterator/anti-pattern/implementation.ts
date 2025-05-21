@@ -8,7 +8,7 @@
  * 4. Client code needs to know the specifics of each collection type
  * 5. Hard to switch between different traversal strategies
  */
-import { logger, LogColor } from '~/utils/logger';
+import { logger } from '~/utils/logger';
 
 /**
  * Book class representing an item in our collections
@@ -43,9 +43,9 @@ export class BookArray {
 
     // Anti-pattern: Collection-specific traversal method
     displayBooks(): void {
-        logger.log('BookArray contents:', LogColor.INFO);
+        logger.info('BookArray contents:');
         for (let i = 0; i < this.books.length; i++) {
-            logger.log(`  ${i + 1}. ${this.books[i].toString()}`, LogColor.INFO);
+            logger.info(`  ${i + 1}. ${this.books[i].toString()}`);
         }
     }
 }
@@ -68,9 +68,9 @@ export class BookMap {
 
     // Anti-pattern: Different traversal method than BookArray
     listBooks(): void {
-        logger.log('BookMap contents:', LogColor.INFO);
+        logger.info('BookMap contents:');
         this.books.forEach((book) => {
-            logger.log(`  - ${book.toString()}`, LogColor.INFO);
+            logger.info(`  - ${book.toString()}`);
         });
     }
 }
@@ -93,10 +93,10 @@ export class BookSet {
 
     // Anti-pattern: Different iteration method again
     printBooks(): void {
-        logger.log('BookSet contents:', LogColor.INFO);
+        logger.info('BookSet contents:');
         const booksArray = Array.from(this.books);
         for (let i = 0; i < booksArray.length; i++) {
-            logger.log(`  • ${booksArray[i].toString()}`, LogColor.INFO);
+            logger.info(`  • ${booksArray[i].toString()}`);
         }
     }
 }
@@ -117,13 +117,13 @@ export class Library {
 
     // Anti-pattern: Filtering requires knowledge of internal structures
     findBooksByAuthor(author: string, array: BookArray, map: BookMap, set: BookSet): void {
-        logger.log(`\nBooks by ${author}:`, LogColor.INFO);
+        logger.info(`\nBooks by ${author}:`);
 
         // Different iteration for array
         const arrayBooks = array.getBooks();
         for (let i = 0; i < arrayBooks.length; i++) {
             if (arrayBooks[i].author === author) {
-                logger.log(`  • ${arrayBooks[i].toString()} [from array]`, LogColor.INFO);
+                logger.info(`  • ${arrayBooks[i].toString()} [from array]`);
             }
         }
 
@@ -131,7 +131,7 @@ export class Library {
         const mapBooks = map.getBooks();
         mapBooks.forEach((book) => {
             if (book.author === author) {
-                logger.log(`  • ${book.toString()} [from map]`, LogColor.INFO);
+                logger.info(`  • ${book.toString()} [from map]`);
             }
         });
 
@@ -139,7 +139,7 @@ export class Library {
         const setBooks = Array.from(set.getBooks());
         for (const book of setBooks) {
             if (book.author === author) {
-                logger.log(`  • ${book.toString()} [from set]`, LogColor.INFO);
+                logger.info(`  • ${book.toString()} [from set]`);
             }
         }
     }

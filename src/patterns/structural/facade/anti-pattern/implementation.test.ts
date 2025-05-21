@@ -7,10 +7,6 @@ import {
     createSampleUserSystem,
     UserData,
 } from './implementation';
-import { setupLoggerMock } from '~/__tests__/fixtures';
-
-// Mock the logger to avoid polluting test output
-setupLoggerMock();
 
 describe('Facade Anti-Pattern Implementation', () => {
     // Tests for individual subsystem components

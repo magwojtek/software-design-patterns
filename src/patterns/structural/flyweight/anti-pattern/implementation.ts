@@ -141,7 +141,7 @@ export class TextEditor {
     }
 
     renderText(): void {
-        logger.log('Rendering text with anti-pattern implementation:', LogColor.WARNING);
+        logger.warn('Rendering text with anti-pattern implementation:');
         for (const char of this.characters) {
             char.render();
         }
@@ -199,9 +199,8 @@ export function createSampleText(): TextEditor {
     editor.addCharacter('l', boldFormatting, 30, 20);
     editor.addCharacter('d', boldFormatting, 40, 20);
 
-    logger.log(
+    logger.error(
         `Anti-pattern created ${editor.getCharacterCount()} character objects using ${editor.getMemoryUsage()} bytes`,
-        LogColor.ERROR,
     );
 
     return editor;

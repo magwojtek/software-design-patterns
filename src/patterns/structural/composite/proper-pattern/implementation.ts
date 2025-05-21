@@ -109,7 +109,7 @@ export class Directory implements FileSystemComponent {
         this.components.push(component);
         component.setParent(this);
         const message = `Added ${component.isDirectory() ? 'directory' : 'file'} ${component.getName()} to directory ${this.name}`;
-        logger.log(message, LogColor.SUCCESS);
+        logger.success(message);
         return message;
     }
 
@@ -119,7 +119,7 @@ export class Directory implements FileSystemComponent {
             this.components.splice(index, 1);
             component.setParent(null);
             const message = `Removed ${component.isDirectory() ? 'directory' : 'file'} ${component.getName()} from directory ${this.name}`;
-            logger.log(message, LogColor.WARNING);
+            logger.warn(message);
             return true;
         }
         return false;
@@ -152,7 +152,7 @@ export class Directory implements FileSystemComponent {
     }
 
     print(indent: string = ''): void {
-        logger.log(`${indent}Directory: ${this.name} (${this.getSize()} bytes)`, LogColor.INFO);
+        logger.info(`${indent}Directory: ${this.name} (${this.getSize()} bytes)`);
 
         // Print all children using polymorphism - works for both files and directories
         this.components.forEach((component) => {
@@ -272,7 +272,7 @@ export class FileSystemManager {
         if (fromDir && fromDir.remove(component)) {
             toDir.add(component);
             const message = `Moved ${component.isDirectory() ? 'directory' : 'file'} ${component.getName()} from ${fromDir.getName()} to ${toDir.getName()}`;
-            logger.log(message, LogColor.SUCCESS);
+            logger.success(message);
             this.lastOperationResult = message;
         }
     }

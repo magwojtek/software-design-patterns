@@ -7,10 +7,6 @@ import {
     RoutingStrategyFactory,
     RoutingStrategyType,
 } from './implementation';
-import { setupLoggerMock } from '~/__tests__/fixtures';
-
-// Mock the logger to prevent console output during tests
-setupLoggerMock();
 
 describe('Strategy Proper Pattern', () => {
     describe('Concrete Strategy Classes', () => {

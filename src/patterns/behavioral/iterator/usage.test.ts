@@ -2,10 +2,6 @@
  * Tests for iterator pattern usage example
  */
 import { runIteratorUsageExample } from './usage';
-import { setupLoggerMock } from '~/__tests__/fixtures';
-
-// Mock the logger to prevent console output during tests
-setupLoggerMock();
 
 describe('Iterator Pattern Usage Example', () => {
     // Extract classes from usage.ts for testing

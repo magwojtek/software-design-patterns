@@ -10,10 +10,6 @@ import {
     TextFormattingManager,
     createSampleFormattedText,
 } from './implementation';
-import { setupLoggerMock } from '~/__tests__/fixtures';
-
-// Spy on logger to check formatting output
-setupLoggerMock();
 
 describe('Decorator Pattern - Anti-pattern Implementation', () => {
     const testText = 'Test Text';

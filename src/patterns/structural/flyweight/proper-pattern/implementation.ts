@@ -183,7 +183,7 @@ export class TextEditor {
     }
 
     renderText(): void {
-        logger.log('Rendering text with proper pattern implementation:', LogColor.SUCCESS);
+        logger.success('Rendering text with proper pattern implementation:');
         for (const charContext of this.characters) {
             charContext.render();
         }
@@ -243,10 +243,9 @@ export function createSampleText(): TextEditor {
     editor.addCharacter('d', boldFormatting, 40, 20);
 
     const stats = editor.getFlyweightStats();
-    logger.log(
+    logger.success(
         `Proper pattern created ${editor.getCharacterCount()} characters using ${stats.count} flyweights ` +
             `(created ${stats.created}, reused ${stats.reused}) using ${stats.memory} bytes`,
-        LogColor.SUCCESS,
     );
 
     return editor;

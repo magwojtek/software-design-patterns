@@ -1,8 +1,4 @@
 import { NavigationApp, NavigationMode } from './implementation';
-import { setupLoggerMock } from '~/__tests__/fixtures';
-
-// Mock the logger to prevent console output during tests
-setupLoggerMock();
 
 describe('Strategy Anti-pattern', () => {
     let navigation: NavigationApp;

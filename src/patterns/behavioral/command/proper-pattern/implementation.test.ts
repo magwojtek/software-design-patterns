@@ -15,10 +15,6 @@ import {
     MacroCommand,
     RemoteControl,
 } from './implementation';
-import { setupLoggerMock } from '~/__tests__/fixtures';
-
-// Mock the logger to prevent console output during tests
-setupLoggerMock();
 
 describe('Command Pattern Proper Implementation Tests', () => {
     describe('Command Interface and Concrete Commands', () => {

@@ -296,7 +296,7 @@ export class Library {
         author: string,
         source: string = '',
     ): void {
-        logger.log(`\nBooks by ${author}${source ? ` [from ${source}]` : ''}:`, LogColor.INFO);
+        logger.info(`\nBooks by ${author}${source ? ` [from ${source}]` : ''}:`);
 
         const iterator = collection.createIterator();
         let found = false;
@@ -304,19 +304,19 @@ export class Library {
         while (iterator.hasNext()) {
             const book = iterator.next();
             if (book.author === author) {
-                logger.log(`  • ${book.toString()}`, LogColor.INFO);
+                logger.info(`  • ${book.toString()}`);
                 found = true;
             }
         }
 
         if (!found) {
-            logger.log(`  No books by ${author} found`, LogColor.WARNING);
+            logger.warn(`  No books by ${author} found`);
         }
     }
 
     // Display books in reverse order (using alternative iterator)
     public displayBooksReversed(books: Book[]): void {
-        logger.log('\nBooks in reverse order:', LogColor.INFO);
+        logger.info('\nBooks in reverse order:');
 
         // Create a custom reverse iterator
         const reverseIterator = new ReverseArrayIterator<Book>(books);
@@ -324,7 +324,7 @@ export class Library {
 
         while (reverseIterator.hasNext()) {
             const book = reverseIterator.next();
-            logger.log(`  ${index--}. ${book.toString()}`, LogColor.INFO);
+            logger.info(`  ${index--}. ${book.toString()}`);
         }
     }
 }

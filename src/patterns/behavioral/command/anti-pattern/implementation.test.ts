@@ -4,10 +4,6 @@
  * This file contains tests for the anti-pattern implementation of the Command pattern.
  */
 import { RemoteControl } from './implementation';
-import { setupLoggerMock } from '~/__tests__/fixtures';
-
-// Mock the logger to prevent console output during tests
-setupLoggerMock();
 
 describe('Command Pattern Anti-Pattern Tests', () => {
     let remoteControl: RemoteControl;

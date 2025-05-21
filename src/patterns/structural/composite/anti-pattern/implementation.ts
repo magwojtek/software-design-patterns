@@ -68,17 +68,14 @@ export class Directory {
 
     addFile(file: File): void {
         this.files.push(file);
-        logger.log(`Added file ${file.getName()} to directory ${this.name}`, LogColor.SUCCESS);
+        logger.success(`Added file ${file.getName()} to directory ${this.name}`);
     }
 
     removeFile(file: File): boolean {
         const index = this.files.indexOf(file);
         if (index !== -1) {
             this.files.splice(index, 1);
-            logger.log(
-                `Removed file ${file.getName()} from directory ${this.name}`,
-                LogColor.WARNING,
-            );
+            logger.warn(`Removed file ${file.getName()} from directory ${this.name}`);
             return true;
         }
         return false;
@@ -86,20 +83,14 @@ export class Directory {
 
     addSubdirectory(directory: Directory): void {
         this.subdirectories.push(directory);
-        logger.log(
-            `Added directory ${directory.getName()} to directory ${this.name}`,
-            LogColor.SUCCESS,
-        );
+        logger.success(`Added directory ${directory.getName()} to directory ${this.name}`);
     }
 
     removeSubdirectory(directory: Directory): boolean {
         const index = this.subdirectories.indexOf(directory);
         if (index !== -1) {
             this.subdirectories.splice(index, 1);
-            logger.log(
-                `Removed directory ${directory.getName()} from directory ${this.name}`,
-                LogColor.WARNING,
-            );
+            logger.warn(`Removed directory ${directory.getName()} from directory ${this.name}`);
             return true;
         }
         return false;
@@ -122,7 +113,7 @@ export class Directory {
     }
 
     print(indent: string = ''): void {
-        logger.log(`${indent}Directory: ${this.name} (${this.getSize()} bytes)`, LogColor.INFO);
+        logger.info(`${indent}Directory: ${this.name} (${this.getSize()} bytes)`);
 
         // Print files
         for (const file of this.files) {
@@ -183,9 +174,8 @@ export class FileSystemManager {
     static moveEntity(file: File, fromDir: Directory, toDir: Directory): void {
         if (fromDir.removeFile(file)) {
             toDir.addFile(file);
-            logger.log(
+            logger.success(
                 `Moved file ${file.getName()} from ${fromDir.getName()} to ${toDir.getName()}`,
-                LogColor.SUCCESS,
             );
         }
     }
@@ -193,9 +183,8 @@ export class FileSystemManager {
     static moveDirectory(dir: Directory, fromDir: Directory, toDir: Directory): void {
         if (fromDir.removeSubdirectory(dir)) {
             toDir.addSubdirectory(dir);
-            logger.log(
+            logger.success(
                 `Moved directory ${dir.getName()} from ${fromDir.getName()} to ${toDir.getName()}`,
-                LogColor.SUCCESS,
             );
         }
     }

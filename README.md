@@ -29,6 +29,13 @@ This repository contains examples of common software design patterns implemented
   - [Strategy](src/patterns/behavioral/strategy/README.md)
   - [Iterator](src/patterns/behavioral/iterator/README.md)
   - [Command](src/patterns/behavioral/command/README.md)
+  - [Template Method](src/patterns/behavioral/template-method/README.md)
+  - [Chain of Responsibility](src/patterns/behavioral/chain-of-responsibility/README.md)
+  - [State](src/patterns/behavioral/state/README.md)
+  - [Mediator](src/patterns/behavioral/mediator/README.md)
+  - [Visitor](src/patterns/behavioral/visitor/README.md)
+  - [Memento](src/patterns/behavioral/memento/README.md)
+  - [Interpreter](src/patterns/behavioral/interpreter/README.md)
 
 ## Project Structure
 

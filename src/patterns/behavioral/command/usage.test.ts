@@ -15,10 +15,6 @@ import {
     Command,
 } from './proper-pattern/implementation';
 import { runCommandExample, SmartHomeController } from './usage';
-import { setupLoggerMock } from '~/__tests__/fixtures/logger';
-
-// Mock the logger to prevent console output during tests
-setupLoggerMock();
 
 describe('Command Pattern Tests', () => {
     // Test Light and Light Commands

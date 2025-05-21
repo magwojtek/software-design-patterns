@@ -27,6 +27,13 @@ export const PatternCategories: Record<PatternType, PatternCategory> = {
     [PatternType.Strategy]: PatternCategory.BEHAVIORAL,
     [PatternType.Iterator]: PatternCategory.BEHAVIORAL,
     [PatternType.Command]: PatternCategory.BEHAVIORAL,
+    [PatternType.TemplateMethod]: PatternCategory.BEHAVIORAL,
+    [PatternType.ChainOfResponsibility]: PatternCategory.BEHAVIORAL,
+    [PatternType.State]: PatternCategory.BEHAVIORAL,
+    [PatternType.Mediator]: PatternCategory.BEHAVIORAL,
+    [PatternType.Visitor]: PatternCategory.BEHAVIORAL,
+    [PatternType.Memento]: PatternCategory.BEHAVIORAL,
+    [PatternType.Interpreter]: PatternCategory.BEHAVIORAL,
 } as const;
 
 export const CategoryPatterns: Record<PatternCategory, PatternType[]> = Object.entries(
