@@ -19,4 +19,11 @@ export enum PatternType {
     Strategy = 'strategy',
     Iterator = 'iterator',
     Command = 'command',
+    TemplateMethod = 'template-method',
+    ChainOfResponsibility = 'chain-of-responsibility',
+    State = 'state',
+    Mediator = 'mediator',
+    Visitor = 'visitor',
+    Memento = 'memento',
+    Interpreter = 'interpreter',
 }

@@ -41,29 +41,19 @@ describe('Example Scripts', () => {
         async (filePath) => {
             const relativePath = path.relative(process.cwd(), filePath);
 
-            try {
-                // Run the TypeScript file using ts-node with proper tsconfig path to resolve modules
-                const { stdout, stderr } = await execPromise(
-                    `npx ts-node -r tsconfig-paths/register ${relativePath}`,
-                );
+            // Run the TypeScript file using ts-node with proper tsconfig path to resolve modules
+            const { stdout, stderr } = await execPromise(
+                `npx ts-node -r tsconfig-paths/register ${relativePath}`,
+            );
 
-                // Output for debugging purposes - use consistent logger
-                if (stdout) {
-                    logger.info(`Output from ${relativePath}: ${stdout}`);
-                }
+            // Output for debugging purposes - use consistent logger
+            if (stdout) {
+                logger.info(`Output from ${relativePath}: ${stdout}`);
+            }
 
-                // If there's stderr but the command didn't throw, it might be just warnings
-                if (stderr) {
-                    logger.warn(`Warnings from ${relativePath}: ${stderr}`);
-                }
-
-                // If we got here without an exception, the script compiled and ran successfully
-                expect(true).toBe(true);
-            } catch (error) {
-                // Use consistent error logging
-                logger.error(`Error running ${relativePath}: ${error}`);
-                // Fail the test with the error message
-                expect(error).toBeUndefined();
+            // If there's stderr but the command didn't throw, it might be just warnings
+            if (stderr) {
+                logger.warn(`Warnings from ${relativePath}: ${stderr}`);
             }
         },
         timeout,

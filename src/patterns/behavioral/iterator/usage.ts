@@ -5,7 +5,7 @@
  * A common use case is when you need to provide a uniform way to access elements
  * in different types of collections without exposing their internal structure.
  */
-import { logger, LogColor } from '~/utils/logger';
+import { logger } from '~/utils/logger';
 
 // Define the iterator interface
 export interface Iterator<T> {
@@ -105,17 +105,17 @@ export class FilteredProductIterator implements Iterator<Product> {
 // UI for displaying products
 class ProductUI {
     static displayProducts(iterator: Iterator<Product>, title: string): void {
-        logger.log(`\n${title}:`, LogColor.INFO);
+        logger.info(`\n${title}:`);
 
         if (!iterator.hasNext()) {
-            logger.log('  No products found', LogColor.WARNING);
+            logger.warn('  No products found');
             return;
         }
 
         let count = 1;
         while (iterator.hasNext()) {
             const product = iterator.next();
-            logger.log(`  ${count++}. ${product.toString()}`, LogColor.INFO);
+            logger.info(`  ${count++}. ${product.toString()}`);
         }
     }
 
@@ -124,7 +124,7 @@ class ProductUI {
         min: number,
         max: number,
     ): void {
-        logger.log(`\nProducts between $${min} and $${max}:`, LogColor.INFO);
+        logger.info(`\nProducts between $${min} and $${max}:`);
 
         iterator.reset(); // Ensure we start from the beginning
         let count = 1;
@@ -133,13 +133,13 @@ class ProductUI {
         while (iterator.hasNext()) {
             const product = iterator.next();
             if (product.price >= min && product.price <= max) {
-                logger.log(`  ${count++}. ${product.toString()}`, LogColor.INFO);
+                logger.info(`  ${count++}. ${product.toString()}`);
                 found = true;
             }
         }
 
         if (!found) {
-            logger.log(`  No products found in the price range $${min}-$${max}`, LogColor.WARNING);
+            logger.warn(`  No products found in the price range $${min}-$${max}`);
         }
     }
 }
@@ -209,25 +209,24 @@ export class ShoppingCartIterator implements Iterator<{ product: Product; quanti
 // Checkout process
 export class CheckoutProcess {
     static processCart(cart: ShoppingCart): void {
-        logger.log('\nShopping Cart Contents:', LogColor.INFO);
+        logger.info('\nShopping Cart Contents:');
 
         const iterator = cart.createIterator();
         let itemNumber = 1;
 
         if (!iterator.hasNext()) {
-            logger.log('  Cart is empty', LogColor.WARNING);
+            logger.warn('  Cart is empty');
             return;
         }
 
         while (iterator.hasNext()) {
             const { product, quantity } = iterator.next();
-            logger.log(
+            logger.info(
                 `  ${itemNumber++}. ${product.toString()} x ${quantity} = $${(product.price * quantity).toFixed(2)}`,
-                LogColor.INFO,
             );
         }
 
-        logger.log(`\nTotal: $${cart.getTotal().toFixed(2)}`, LogColor.SUCCESS);
+        logger.success(`\nTotal: $${cart.getTotal().toFixed(2)}`);
     }
 }
 
@@ -273,7 +272,7 @@ export function runIteratorUsageExample(): void {
         const product = allProductsIterator3.next();
         if (product.id === 'p1' || product.id === 'p3') {
             cart.addItem(product);
-            logger.log(`Added ${product.name} to cart`, LogColor.SUCCESS);
+            logger.success(`Added ${product.name} to cart`);
         }
     }
 
@@ -283,7 +282,7 @@ export function runIteratorUsageExample(): void {
         const product = allProductsIterator4.next();
         if (product.id === 'p3') {
             cart.addItem(product);
-            logger.log(`Added another ${product.name} to cart`, LogColor.SUCCESS);
+            logger.success(`Added another ${product.name} to cart`);
             break;
         }
     }

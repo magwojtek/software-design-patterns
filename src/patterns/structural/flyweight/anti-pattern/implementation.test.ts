@@ -1,8 +1,4 @@
 import { Character, CharacterFormatting, TextEditor, createSampleText } from './implementation';
-import { setupLoggerMock } from '~/__tests__/fixtures';
-
-// Mock the logger to avoid polluting test output
-setupLoggerMock();
 
 describe('Flyweight Anti-Pattern Implementation', () => {
     let basicFormatting: CharacterFormatting;

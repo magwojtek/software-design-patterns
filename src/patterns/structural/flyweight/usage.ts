@@ -7,7 +7,7 @@
  */
 import * as AntiPattern from './anti-pattern/implementation';
 import * as ProperPattern from './proper-pattern/implementation';
-import { logger } from '../../../utils/logger';
+import { logger } from '~/utils/logger';
 
 // Create a larger text sample to better demonstrate memory benefits
 function demonstrateMemoryEfficiency(): void {
